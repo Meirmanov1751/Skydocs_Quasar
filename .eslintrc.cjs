@@ -63,6 +63,7 @@ module.exports = {
 
   // add your custom rules here
   rules: {
+    'linebreak-style': 'off',
     'comma-dangle': 'off',
     'no-console': 'off',
     'no-plusplus': 'off',
