@@ -1,23 +1,28 @@
 <template>
   <q-layout style="width: 90%">
 
-    <q-banner rounded style="margin-top:16px; margin-bottom:16px; text-align: center;
+    <q-banner rounded style="margin:16px 0; text-align: center;
     background-color: #c5e1a5">Тестирование таблицы Postgres SQL</q-banner>
 
-    <q-card>
-      <q-input v-model="name" label="Name"></q-input>
-      <q-input v-model="description" label="Description"></q-input>
-      <q-input v-model="price" label="Price"></q-input>
-      <q-input v-model="tax" label="Tax"></q-input>
-      <q-btn style="width: 100%; margin-top: 10px;" @click="postData" label="Submit"></q-btn>
-    </q-card>
+    <div style="width: 100%; display:flex; justify-content: center; align-items: center">
+      <q-card style="width: 80%;">
+        <q-input style="padding: 0 10px" v-model="name" label="Name"></q-input>
+        <q-input style="padding: 0 10px" v-model="description" label="Description"></q-input>
+        <q-input style="padding: 0 10px" v-model="price" label="Price"></q-input>
+        <q-input style="padding: 0 10px" v-model="tax" label="Tax"></q-input>
+        <div style="width: 100%; display:flex; justify-content: center; align-items: center">
+          <q-btn style="width: 100%; padding: 0 10px; margin: 10px; background-color: #00b0ff"
+                 @click="postData" label="Submit"></q-btn>
+        </div>
+      </q-card>
+    </div>
 
     <q-table
       style="margin-top: 20px"
       :color="'brown'"
       :rows="items"
       :columns="columns"
-      row-key="name"
+      row-key="id"
       selection="multiple"
       v-model:selected="selected"
     >
@@ -45,6 +50,10 @@
 
     <div class="q-mt-md">
       Selected: {{ JSON.stringify(selected) }}
+    </div>
+
+    <div class="q-mt-md">
+      Selected: {{ JSON.stringify(selectedIds) }}
     </div>
 
   </q-layout>
@@ -102,6 +111,11 @@ export default {
       ]
     };
   },
+  computed: {
+    selectedIds() {
+      return this.selected.map((item) => item.id);
+    }
+  },
   methods: {
     async postData() {
       try {
@@ -142,8 +156,9 @@ export default {
     },
     async deleteSelected() {
       try {
+        const body = { ids: this.selectedIds };
         // Отправить запрос на удаление объекта
-        await axios.delete('http://127.0.0.1:8000/delete_items/', this.selected);
+        await axios.delete('http://127.0.0.1:8000/delete_items/', { data: body });
         // Получить обновленные данные
         await this.getItems();
       } catch (error) {
