@@ -78,9 +78,11 @@
 <script>
 import { ref, reactive, computed } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   setup() {
+    const router = useRouter();
     const selectedFile = ref('');
     const checkIfDocumentUpload = ref('');
     const name = ref('');
@@ -134,7 +136,7 @@ export default {
     });
 
     const handleHome = () => {
-      this.$router.push('/home');
+      router.push('/home');
     };
 
     const file_selected = (files) => {
@@ -159,29 +161,29 @@ export default {
       }
     };
 
-    const postData = async () => {
+    const getItems = async () => {
       try {
-        await axios.post('http://127.0.0.1:8000/insert/', {
-          name: this.name,
-          description: this.description,
-          price: this.price,
-          tax: this.tax
-        });
-        await this.getItems();
-        // Очистить форму после отправки данных
-        this.name = '';
-        this.description = '';
-        this.price = '';
-        this.tax = '';
+        const response = await axios.get('http://127.0.0.1:8000/inserted/');
+        items.value = response.data;
       } catch (error) {
         console.error(error);
       }
     };
 
-    const getItems = async () => {
+    const postData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/inserted/');
-        this.items = response.data;
+        await axios.post('http://127.0.0.1:8000/insert/', {
+          name: name.value,
+          description: description.value,
+          price: price.value,
+          tax: tax.value,
+        });
+        await getItems();
+        // Очистить форму после отправки данных
+        name.value = '';
+        description.value = '';
+        price.value = '';
+        tax.value = '';
       } catch (error) {
         console.error(error);
       }
@@ -193,7 +195,7 @@ export default {
         // Отправить запрос на удаление объекта
         await axios.delete(`http://127.0.0.1:8000/items/${itemId}`);
         // Получить обновленные данные
-        await this.getItems();
+        await getItems();
       } catch (error) {
         console.error(error);
       }
@@ -201,12 +203,12 @@ export default {
 
     const deleteSelected = async () => {
       try {
-        const body = { ids: this.selectedIds };
+        const body = { ids: selectedIds };
         // Отправить запрос на удаление объекта
         await axios.delete('http://127.0.0.1:8000/delete_items/', { data: body });
-        this.selected = [];
+        selected.value = [];
         // Получить обновленные данные
-        await this.getItems();
+        await getItems();
       } catch (error) {
         console.error(error);
       }
