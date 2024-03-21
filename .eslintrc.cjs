@@ -63,6 +63,18 @@ module.exports = {
 
   // add your custom rules here
   rules: {
+    'no-extra-semi': 'off',
+    'semi': 'off',
+    'no-empty': 'off',
+    'prefer-template': 'off',
+    'prefer-destructuring': 'off',
+    'space-before-function-paren': 'off',
+    '@typescript-eslint/no-unused-vars': "off",
+    '@typescript-eslint/no-extra-semi': 'off',
+    'prefer-arrow-callback': 'off',
+    'func-names': 'off',
+    'keyword-spacing': 'off',
+    'no-extra-bind': 'off',
     'linebreak-style': 'off',
     'comma-dangle': 'off',
     'no-console': 'off',
