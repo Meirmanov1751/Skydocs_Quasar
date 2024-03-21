@@ -1,4 +1,16 @@
 // app global css in SCSS form
+$primary   : #000;
+$secondary : 1px solid rgba(67, 79, 99, 0.2);
+$accent    : #097cb4;
+
+$dark      : #301717;
+$dark-page : #121212;
+
+$positive  : #21BA45;
+$negative  : #C10015;
+$info      : #31CCEC;
+$warning   : #F2C037;
+
 *,
 *::after,
 *::before {
@@ -6,7 +18,7 @@
 }
 
 .home_container{
-  background: #000;
+  background: $primary;
   color: white;
 }
 
@@ -63,7 +75,7 @@ input {
 }
 
 .header {
-  background: #000000;
+  background: $primary;
   padding: 14px 0;
   padding-right: 53px;
   padding-left: 32px;
@@ -105,7 +117,7 @@ input {
 
       background: #1f1f1f;
       color: white;
-      border: 1px solid rgba(67, 79, 99, 0.2);
+      border: $secondary;
       border-radius: 17.5px;
     }
 
@@ -234,7 +246,7 @@ input {
       align-items: center;
       text-transform: uppercase;
 
-      color: #097cb4;
+      color: $accent;
     }
 
     &-tools {
@@ -272,7 +284,7 @@ input {
       margin-left: 12px;
       margin-bottom: 15px;
 
-      color: #097cb4;
+      color: $accent;
     }
 
     &-items {
@@ -324,7 +336,7 @@ input {
 }
 
 .card {
-  background: #000000;
+  background:  $primary;
   border-radius: 8px;
   padding-top: 18px;
   padding-left: 19px;

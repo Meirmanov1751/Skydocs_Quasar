@@ -63,6 +63,9 @@ module.exports = {
 
   // add your custom rules here
   rules: {
+    'arrow-body-style': 'off',
+    'arrow-parens': 'off',
+    'camelcase': 'off',
     'no-extra-semi': 'off',
     'semi': 'off',
     'no-empty': 'off',
