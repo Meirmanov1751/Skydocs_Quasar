@@ -17,6 +17,8 @@
 
         <div class="q-pa-md">
           <q-uploader
+            ref="uploader"
+            field-name="files"
             url="http://localhost:8000/upload"
             accept=".jpg, .jpeg, .png"
             multiple
@@ -90,6 +92,7 @@ export default {
     const attaches = reactive([]);
     const items = ref([]);
     const selected = ref([]);
+    const uploader = ref([]);
 
     const columns = [
       {
@@ -143,16 +146,18 @@ export default {
     };
 
     const uploadFile = async () => {
-      const fd = new FormData();
-      for (let x = 0; x < selectedFile.value.length; x++) {
-        fd.append('files', selectedFile.value[x]);
-      }
       try {
-        const response = await axios.post('http://localhost:8000/upload', fd, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-        if (response.data.ok) {
-          // Обработка успешного ответа
+        for (let x = 0; x < selectedFile.value.length; x++) {
+          console.log('[' + x + ' / ' + selectedFile.value.length + ']->send: ' + selectedFile.value[x].name)
+          const fd = new FormData();
+          fd.append('files', selectedFile.value[x]);
+          const response = axios.post('http://localhost:8000/upload', fd, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          });
+          if (response.data.ok) {
+            // Обработка успешного ответа
+            // uploader.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
+          }
         }
       } catch (error) {
         console.error('Ошибка при загрузке файла:', error);
