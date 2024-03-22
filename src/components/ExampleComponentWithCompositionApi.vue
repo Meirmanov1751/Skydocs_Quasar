@@ -14,7 +14,7 @@
         <q-input style="padding: 0 10px" v-model="description" label="Description"></q-input>
         <q-input style="padding: 0 10px" v-model="price" label="Price"></q-input>
         <q-input style="padding: 0 10px" v-model="tax" label="Tax"></q-input>
-
+        <q-editor style="padding: 0 10px" v-model="sod" model-value=""></q-editor>
         <div class="q-pa-md">
           <q-uploader
             ref="uploader"
@@ -91,6 +91,7 @@ export default {
     const description = ref('');
     const price = ref('');
     const tax = ref('');
+    const sod = ref('');
     const attaches = reactive([]);
     const items = ref([]);
     const selected = ref([]);
@@ -149,17 +150,24 @@ export default {
 
     const uploadFile = async () => {
       try {
+        // console.log('[Sod]:' + sod.value)
+        if (selectedFile.value.length < 1) {
+          console.log('нет данных для загрузки на сервер')
+          return
+        }
+        const fd = new FormData();
         for (let x = 0; x < selectedFile.value.length; x++) {
           console.log('[' + x + ' / ' + selectedFile.value.length + ']->send: ' + selectedFile.value[x].name)
-          const fd = new FormData();
           fd.append('files', selectedFile.value[x]);
-          const response = axios.post('http://localhost:8000/upload', fd, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-          });
-          if (response.data.ok) {
-            // Обработка успешного ответа
-            // uploader.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
-          }
+        }
+        const response = await axios.post('http://localhost:8000/upload', fd, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        if (response.data.ok) {
+          // Обработка успешного ответа
+          console.log('отправка успешно обработана')
+          // uploader.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
+          // uploader.ref.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
         }
       } catch (error) {
         console.error('Ошибка при загрузке файла:', error);
@@ -229,11 +237,13 @@ export default {
       description,
       price,
       tax,
+      sod,
       attaches,
       items,
       selected,
       columns,
       selectedIds,
+      uploader,
       handleHome,
       file_selected,
       uploadFile,
