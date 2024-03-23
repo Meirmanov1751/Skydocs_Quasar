@@ -20,7 +20,7 @@
             ref="uploader"
             field-name="files"
             url="http://localhost:8000/upload"
-            accept=".jpg, .jpeg, .png"
+            accept=".jpg, .jpeg, .png, .docx"
             multiple
             @added="file_selected">
           </q-uploader>
