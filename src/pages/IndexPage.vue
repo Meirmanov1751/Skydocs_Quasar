@@ -1,12 +1,14 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component-with-composition-api
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component-with-composition-api>
-  </q-page>
+  <div class="content">
+    <q-page class="row items-center justify-evenly">
+      <example-component-with-composition-api
+        title="Example component"
+        active
+        :todos="todos"
+        :meta="meta"
+      ></example-component-with-composition-api>
+    </q-page>
+  </div>
 </template>
 
 <script setup lang="ts">

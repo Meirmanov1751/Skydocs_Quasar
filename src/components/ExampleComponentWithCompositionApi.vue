@@ -1,9 +1,5 @@
 <template>
   <q-layout style="width: 90%">
-    <div style="width: 100%; margin-top: 20px; display:flex; justify-content: end;
-     align-items: center">
-      <q-btn style="padding: 5px 70px" @click="handleHome" label="SKYDOCS" color="primary"/>
-    </div>
     <q-banner rounded style="margin:16px 0; text-align: center;
     background-color: #c5e1a5">Тестирование таблицы Postgres SQL
     </q-banner>

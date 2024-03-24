@@ -17,21 +17,43 @@
     </q-item-section>
   </q-item> -->
 
-  <div class="sidebar-menu-item" s
+  <div class="sidebar-menu-item"
+      v-if="allowed.includes(props.id)"
       :id="props.id"
-      style="display: flex; width: 258px; height: 36px;
-       margin-bottom: 20px; padding-top: 5px; margin-left: 15px;"
+      style="display: flex;
+            width: 55px;
+            height: 36px;
+            margin-bottom: 20px;
+            padding-top: 5px;
+            margin-left: 31px;"
       :onclick="(e) => {
         changeHash(e, props.link)
       }"
       >
 
         <img :src="props.icon" style="margin-left: 5px; height: 24px;">
-        <p class='sidebar-menu-p'>{{ props.title }}</p>
         <img v-if="allowed.includes(props.id)"
             src="../assets/arrow-right-sign-to-navigate.svg"
-            style="height: 10px;"
+            style="height: 10px; margin-top: 7px; margin-left: 10px;"
             class="sidebar-menu-arrow-right" >
+
+  </div>
+
+  <div class="sidebar-menu-item"
+      v-if="!allowed.includes(props.id)"
+      :id="props.id"
+      style="display: flex;
+            width: 35px;
+            height: 36px;
+            margin-bottom: 20px;
+            padding-top: 5px;
+            margin-left: 31px"
+      :onclick="(e) => {
+        changeHash(e, props.link)
+      }"
+      >
+
+        <img :src="props.icon" style="margin-left: 5px; height: 24px;">
 
   </div>
 

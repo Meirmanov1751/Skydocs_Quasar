@@ -63,6 +63,9 @@ module.exports = {
 
   // add your custom rules here
   rules: {
+    'eol-last': 'off',
+    'space-in-parens': 'off',
+    'quotes': 'off',
     'arrow-body-style': 'off',
     'arrow-parens': 'off',
     'camelcase': 'off',
