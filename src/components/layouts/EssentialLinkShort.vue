@@ -33,7 +33,7 @@
 
         <img :src="props.icon" style="margin-left: 5px; height: 24px;">
         <img v-if="allowed.includes(props.id)"
-            src="../assets/arrow-right-sign-to-navigate.svg"
+            src="../../assets/images/arrow-right-sign-to-navigate.svg"
             style="height: 10px; margin-top: 7px; margin-left: 10px;"
             class="sidebar-menu-arrow-right" >
 

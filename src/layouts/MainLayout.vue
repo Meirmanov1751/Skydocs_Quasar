@@ -19,16 +19,16 @@
             id="header-search-input"
           >
 
-          <img src="../assets/header-search.svg"
+          <img src="../assets/images/header-search.svg"
                style="width: 34px;" id="header-search-icon">
         </div>
 
         <div>
-          <img src="../assets/mail.svg"
+          <img src="../assets/images/mail.svg"
                style="width: 28px; height: 28px; margin-left: 20px;">
-          <img src="../assets/notification.svg"
+          <img src="../assets/images/notification.svg"
                style="width: 28px; height: 28px; margin-left: 20px;">
-          <img src="../assets/V.svg"
+          <img src="../assets/images/V.svg"
                style="width: 28px; height: 28px; margin-left: 20px;">
         </div>
 
@@ -40,7 +40,7 @@
             <p>Ген дир</p>
             <p>ФИО</p>
           </div>
-          <img src="../assets/arrow-down-sign-to-navigate.svg" style="width: 10px;">
+          <img src="../assets/images/arrow-down-sign-to-navigate.svg" style="width: 10px;">
         </div>
 
       </q-toolbar>
@@ -65,15 +65,16 @@
             id="header-search-input"
           >
 
-          <img src="../assets/header-search.svg" style="width: 34px;" id="header-search-icon">
+          <img src="../assets/images/header-search.svg"
+               style="width: 34px;" id="header-search-icon">
         </div>
 
         <div>
-          <img src="../assets/mail.svg" style="width: 28px; height: 28px;
+          <img src="../assets/images/mail.svg" style="width: 28px; height: 28px;
            margin-left: 20px;">
-          <img src="../assets/notification.svg"
+          <img src="../assets/images/notification.svg"
                style="width: 28px; height: 28px; margin-left: 20px;">
-          <img src="../assets/V.svg" style="width: 28px; height: 28px; margin-left: 20px;">
+          <img src="../assets/images/V.svg" style="width: 28px; height: 28px; margin-left: 20px;">
         </div>
 
         <div id="account" style="flex-direction: row;display: flex;width: 227px;height: 42px;
@@ -83,7 +84,7 @@
             <p>Ген дир</p>
             <p>ФИО</p>
           </div>
-          <img src="../assets/arrow-down-sign-to-navigate.svg" style="width: 10px;">
+          <img src="../assets/images/arrow-down-sign-to-navigate.svg" style="width: 10px;">
         </div>
 
       </q-toolbar>
@@ -135,9 +136,9 @@
             <p id="current-time"
                style="font-size: 19px; height: 22px; margin: 0; margin-top: -5px;">12:31</p>
             <div id="sidebar-menu-info-icons" style="margin-left: 83px">
-              <img src="../assets/theme.svg">
-              <img src="../assets/language.svg" style="margin-left: 20px">
-              <img src="../assets/full-screen.svg" style="margin-left: 20px">
+              <img src="../assets/images/theme.svg">
+              <img src="../assets/images/language.svg" style="margin-left: 20px">
+              <img src="../assets/images/full-screen.svg" style="margin-left: 20px">
             </div>
           </div>
 
@@ -179,10 +180,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
-import EssentialLinkShort from 'components/EssentialLinkShort.vue';
-import FullLogo from 'components/FullLogo.vue';
-import LogoImage from 'components/LogoImage.vue';
+import EssentialLink from 'components/layouts/EssentialLink.vue'
+import EssentialLinkShort from 'components/layouts/EssentialLinkShort.vue';
+import FullLogo from 'components/layouts/FullLogo.vue';
+import LogoImage from 'components/layouts/LogoImage.vue';
 import { biPersonCircle } from '@quasar/extras/bootstrap-icons'
 
 defineOptions({
@@ -192,31 +193,31 @@ defineOptions({
 const MenuLinksList = [
   {
     title: 'ТЕСТ АНВАРА',
-    icon: 'src/assets/profile.svg',
+    icon: 'src/assets/images/profile.svg',
     id: 'profile',
     link: '/',
   },
   {
     title: 'Рабочий стол',
-    icon: 'src/assets/desktop.svg',
+    icon: 'src/assets/images/desktop.svg',
     id: 'desktop',
     link: '/desktop',
   },
   {
     title: 'Структура АО КТК',
-    icon: 'src/assets/ao-ktk-struct.svg',
+    icon: 'src/assets/images/ao-ktk-struct.svg',
     id: 'ao-ktk-struct',
     link: '/ao-ktk-struct',
   },
   {
     title: 'Делопроизводство',
-    icon: 'src/assets/dp.svg',
+    icon: 'src/assets/images/dp.svg',
     id: 'dp',
     link: '/dp',
   },
   {
     title: 'Фин-ОЦО',
-    icon: 'src/assets/fin-oco.svg',
+    icon: 'src/assets/images/fin-oco.svg',
     id: 'fin-oco',
     link: '/fin-oco',
   },
@@ -226,25 +227,25 @@ const CabinetLinksList = [
 
   {
     title: 'Профиль',
-    icon: 'src/assets/profile.svg',
+    icon: 'src/assets/images/profile.svg',
     id: 'profile',
     link: '/profile',
   },
   {
     title: 'Почта',
-    icon: 'src/assets/sidebar-mail.svg',
+    icon: 'src/assets/images/sidebar-mail.svg',
     id: 'sidebar-mail',
     link: '/sidebar-mail',
   },
   {
     title: 'Календарь',
-    icon: 'src/assets/calendar.svg',
+    icon: 'src/assets/images/calendar.svg',
     id: 'sidebar-calendar',
     link: '/sidebar-calendar',
   },
   {
     title: 'Счет',
-    icon: 'src/assets/calc.svg',
+    icon: 'src/assets/images/calc.svg',
     id: 'sidebar-calc',
     link: '/sidebar-calc',
   },
@@ -253,43 +254,43 @@ const CabinetLinksList = [
 const SpravLinksList = [
   {
     title: 'Инструменты СЭД',
-    icon: 'src/assets/sad-inst.svg',
+    icon: 'src/assets/images/sad-inst.svg',
     id: 'sad-inst',
     link: '/sad-inst',
   },
   {
     title: 'Специальные плагины',
-    icon: 'src/assets/spec-plugins.svg',
+    icon: 'src/assets/images/spec-plugins.svg',
     id: 'spec-plugins',
     link: '/spec-plugins',
   },
   {
     title: 'Графики',
-    icon: 'src/assets/charts.svg',
+    icon: 'src/assets/images/charts.svg',
     id: 'charts',
     link: '/charts',
   },
   {
     title: 'Таблицы',
-    icon: 'src/assets/tables.svg',
+    icon: 'src/assets/images/tables.svg',
     id: 'tables',
     link: '/tables',
   },
   {
     title: 'UI элементы',
-    icon: 'src/assets/ui-elems.svg',
+    icon: 'src/assets/images/ui-elems.svg',
     id: 'ui-elems',
     link: '/ui-elems',
   },
   {
     title: 'Формы',
-    icon: 'src/assets/forms.svg',
+    icon: 'src/assets/images/forms.svg',
     id: 'forms',
     link: '/forms',
   },
   {
     title: 'Параметры сетки',
-    icon: 'src/assets/params.svg',
+    icon: 'src/assets/images/params.svg',
     id: 'params',
     link: '/params',
   },
