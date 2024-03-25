@@ -10,7 +10,17 @@
         <q-input style="padding: 0 10px" v-model="description" label="Description"></q-input>
         <q-input style="padding: 0 10px" v-model="price" label="Price"></q-input>
         <q-input style="padding: 0 10px" v-model="tax" label="Tax"></q-input>
+        <q-img src="http://localhost:8000/attachments/26" width="100px" ></q-img>
         <q-editor style="padding: 0 10px" v-model="sod" model-value=""></q-editor>
+        <slot><div>sod2: {{sod}}</div></slot>
+
+        <q-editor
+          v-model="sod"
+          readonly
+          :definitions="editorDefinitions"
+          class="readonly-editor"
+        />
+
         <div class="q-pa-md">
           <q-uploader
             ref="uploader"
@@ -18,10 +28,11 @@
             url="http://localhost:8000/upload"
             accept=".jpg, .jpeg, .png, .docx"
             multiple
+            @uploaded="clearUploader"
             @added="file_selected">
           </q-uploader>
 
-          <q-btn @click="uploadFile()">Upload</q-btn>
+          <q-btn @click="uploadFile">Upload</q-btn>
         </div>
 
         <div style="width: 100%; display:flex; justify-content: center; align-items: center">
@@ -161,10 +172,13 @@ export default {
         });
         if (response.data.ok) {
           // Обработка успешного ответа
+
           console.log('отправка успешно обработана')
           // uploader.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
           // uploader.ref.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
-        }
+        };
+
+        console.log(uploader.value)
       } catch (error) {
         console.error('Ошибка при загрузке файла:', error);
       }
@@ -223,6 +237,10 @@ export default {
       }
     };
 
+    const clearUploader = () => {
+      // Очистить q-uploader
+      uploader.value = [];
+    };
     // Вызываем функцию getItems после монтирования компонента
     getItems();
     // Возвращаем переменные и методы для использования в шаблоне
@@ -240,6 +258,7 @@ export default {
       columns,
       selectedIds,
       uploader,
+      clearUploader,
       handleHome,
       file_selected,
       uploadFile,
@@ -251,3 +270,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.readonly-editor .q-editor__toolbars-container {
+  display: none;
+}
+
+</style>

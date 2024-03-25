@@ -367,7 +367,7 @@ body{
 
 .content{
   width: calc(100% - 100px);
-  height: 800px;
+  min-height: 800px;
   margin: 50px 45px 110px 32px;
   border: 2px solid white;
   border-radius: 10px;
