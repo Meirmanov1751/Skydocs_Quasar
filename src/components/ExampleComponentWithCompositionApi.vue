@@ -146,10 +146,6 @@ export default {
       return selected.value.map(item => item.id);
     });
 
-    const handleHome = () => {
-      router.push('/home');
-    };
-
     const file_selected = (files) => {
       selectedFile.value = files;
       checkIfDocumentUpload.value = true;
@@ -158,10 +154,21 @@ export default {
     const uploadFile = async () => {
       try {
         // console.log('[Sod]:' + sod.value)
+        // await uploader.value.pickFiles() - но тут не ждет пока добавим.
+        // надо все что ниже переносить в @added
+        for (let i = 0; i < uploader.value.files.length; i++) {
+          console.log('[1] files: ' + uploader.value.files[i].name + ' status: ' + uploader.value.files[i].status)
+          console.log(uploader.value.files[i])
+        }
         if (selectedFile.value.length < 1) {
           console.log('нет данных для загрузки на сервер')
           return
         }
+        for (let i = 0; i < uploader.value.files.length; i++) {
+          console.log('files: ' + uploader.value.files[i].name + ' status: ' + uploader.value.files[i].status)
+          console.log(uploader.value.files[i])
+        }
+
         const fd = new FormData();
         for (let x = 0; x < selectedFile.value.length; x++) {
           console.log('[' + x + ' / ' + selectedFile.value.length + ']->send: ' + selectedFile.value[x].name)
@@ -172,8 +179,12 @@ export default {
         });
         if (response.data.ok) {
           // Обработка успешного ответа
+          for (let x = 0; x < selectedFile.value.length; x++) {
+            console.log('отправка успешно обработана')
+            uploader.value.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
+          }
 
-          console.log('отправка успешно обработана')
+          // uploader.value.reset()
           // uploader.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
           // uploader.ref.updateFileStatus(selectedFile.value[x], 'uploaded', 100)
         };
@@ -259,7 +270,6 @@ export default {
       selectedIds,
       uploader,
       clearUploader,
-      handleHome,
       file_selected,
       uploadFile,
       postData,
