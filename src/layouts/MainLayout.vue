@@ -198,6 +198,12 @@ const MenuLinksList = [
     link: '/',
   },
   {
+    title: 'Corrin',
+    icon: 'src/assets/images/profile.svg',
+    id: 'corrin',
+    link: '/corrin',
+  },
+  {
     title: 'Рабочий стол',
     icon: 'src/assets/images/desktop.svg',
     id: 'desktop',
